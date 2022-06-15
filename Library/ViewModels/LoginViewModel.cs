@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using HandyControl.Controls;
 using Library.Model.Entities;
 using Library.Repos;
 using System;
@@ -7,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Library.ViewModels
 {
@@ -31,21 +34,45 @@ namespace Library.ViewModels
             set { nameLogin = value; RaisePropertyChanged(); }
         }
 
+        private string passwordRegister;
 
-  
-     
+        public string PasswordRegister
+        {
+            get { return passwordLogin; }
+            set { passwordLogin = value; RaisePropertyChanged(); }
+        }
+
+        private string passwordLogin;
+
+        public string PasswordLogin
+        {
+            get { return passwordLogin; }
+            set { passwordLogin = value; RaisePropertyChanged(); }
+        }
+
+        public RelayCommand Register_button
+        {
+            get => new RelayCommand(() =>
+            {
+
+               if(NameRegister!=null && PasswordRegister!=null)
+                {
+                    Users.Add(new User { UserName=NameRegister,Password=PasswordRegister});
+                    users.Add(new User { UserName=NameRegister, Password=PasswordRegister });
+                    users.SaveChanges();
+                 
+
+                }
+            });
+        }
+
         public LoginViewModel(IRepository<User> users)
         {
             this.users = users;
             Users = new ObservableCollection<User>(users.GetAll());
         }
 
-        private string passwordRegister;
-
-        public string PasswordRegister { get => passwordRegister; set => Set(ref passwordRegister, value); }
-        private string passwordLogin;
-
-        public string PasswordLogin { get => passwordLogin; set => Set(ref passwordLogin, value); }
+        
 
     }
 }

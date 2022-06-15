@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
       xmlns:viewmodels="clr-namespace:Library.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -28,7 +29,15 @@
          
            
             <StackPanel >
-                <materialDesign:DialogHost Width="300" Margin="650,300,0,0"
+            <TextBlock HorizontalAlignment="Center" Foreground="#1282a2"
+  Style="{StaticResource MaterialDesignHeadline3TextBlock}"
+  Text="Digital Library" />
+            <Viewbox Width="300" Height="100" HorizontalAlignment="Right">
+                <hc:FlipClock HorizontalAlignment="Right" />
+            </Viewbox>
+       
+
+            <materialDesign:DialogHost Width="300" Margin="650,100,0,0"
   IsOpen="{Binding Popupisopen,UpdateSourceTrigger=PropertyChanged}"
   DialogTheme="Inherit">
                     <materialDesign:DialogHost.DialogContent >
@@ -48,14 +57,16 @@
                                 </Button.CommandParameter>
                             </Button>
                             <Border BorderThickness="10">
-                                    <Label Content="Register"  FontSize="20">
+                                <Label Content="Register" Foreground="White" FontSize="20">
 
                                     </Label>
                                 </Border>
-
+                            <Border  BorderThickness="20">
+                                <hc:Gravatar Height="180" Width="180" Id="{Binding Text,ElementName=TextBoxName}" Margin="10"/>
+                            </Border>
                                 <Border BorderThickness="20" >
-                                    <TextBox
-  x:Name="NameTextBox"   
+                                    <TextBox 
+  Name="TextBoxName"    Foreground="#1282a2"
   materialDesign:HintAssist.Hint="Name"
   materialDesign:HintAssist.HelperText="Helper text longer than error">
                                         <TextBox.Text >
@@ -66,10 +77,12 @@
                                             </Binding>
                                         </TextBox.Text>
                                     </TextBox>
-                                </Border>
-                                <Border BorderThickness="20">
+                              
+                            </Border>
+                      
+                            <Border BorderThickness="20">
                                 <TextBox
-  x:Name="PasswordBox" Text="{Binding PasswordRegister}"
+  x:Name="PasswordBox" Text="{Binding PasswordRegister}"  Foreground="#1282a2"
   materialDesign:HintAssist.Hint="Password"
   materialDesign:TextFieldAssist.HasClearButton="True"
   materialDesign:HintAssist.HelperText="At least 8 characters" >
@@ -79,10 +92,10 @@
                        
                             <Button
          
-          IsDefault="True"
-          Margin="0 8 8 0"
+          IsDefault="True" Foreground="#1282a2"
+          Margin="0 8 8 0" 
           Content="Next"
-        Command="{Binding OpenUserCommand}">
+        Command="{Binding Register_button}">
                                 </Button>
                           
 
@@ -97,14 +110,18 @@
                         <Grid>
                            
                             <Border  BorderThickness="10">
-                                    <StackPanel   HorizontalAlignment="Center" Width="300" VerticalAlignment="Center"  Background="#1282a2">
+                                    <StackPanel   HorizontalAlignment="Center" Width="300"  Height="500" VerticalAlignment="Center"  Background="#1282a2">
                                     <Border BorderThickness="10">
-                                        <Label Content="Login"  FontSize="20"  Foreground="white">
+                                    <Label Content="Login"  FontSize="20"  Foreground="#1282a2">
 
                                         </Label>
                                     </Border>
-
-                                    <Border BorderThickness="20" >
+                                <Border BorderThickness="10">
+                                    <Image Source="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png">
+                                    
+                                </Image>
+                                </Border>
+                                <Border BorderThickness="20" >
                                         <TextBox
   x:Name="NameTextBox_register"
   materialDesign:HintAssist.Hint="Name" Foreground="white"

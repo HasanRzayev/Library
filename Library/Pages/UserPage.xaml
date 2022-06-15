@@ -12,37 +12,99 @@
       TextOptions.TextRenderingMode="Auto"
       FontFamily="{DynamicResource MaterialDesignFont}"
 
-      Height="800" Width="900">
+      Height="900" Width="1600">
 
 
 
 
-    <Grid>
+    <Grid Background="#1282a2">
         <Border CornerRadius="52" BorderThickness="10" BorderBrush="White">
-            <Border.Background>
-                <ImageBrush ImageSource="https://wallpaperaccess.com/full/2964938.jpg"/>
-            </Border.Background>
+         
 
         </Border>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition  Height="1*" ></RowDefinition>
-                <RowDefinition  Height="5*"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <ComboBox Grid.Row="0" Background="Gold"
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"  ></ColumnDefinition>
+                <ColumnDefinition Width="2*"  ></ColumnDefinition>
+                <ColumnDefinition Width="1*" ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="9*" ></RowDefinition>
+                </Grid.RowDefinitions>
+                <ComboBox Grid.Row="0" Background="Gold"
   materialDesign:HintAssist.Hint="Search"
   materialDesign:HintAssist.HintOpacity=".26"
   IsEditable="True">
-                <ComboBoxItem
+                    <ComboBoxItem
     Content="Apple" />
-                <ComboBoxItem
+                    <ComboBoxItem
     Content="Banana" />
-                <ComboBoxItem
+                    <ComboBoxItem
     Content="Pear" />
-                <ComboBoxItem
+                    <ComboBoxItem
     Content="Orange" />
-            </ComboBox>
+                </ComboBox>
+                <StackPanel Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+                    <ListView  SelectedItem="{Binding Selected_driver}"  ItemsSource="{Binding drivers,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="800">
+                        <ListView.View >
+                            <GridView >
+                                <GridViewColumn Width="130" Header="Name" 
+              DisplayMemberBinding="{Binding Name}"  />
+                                <GridViewColumn Width="130" Header="Pages"  
+              DisplayMemberBinding="{Binding Pages}" />
+                                <GridViewColumn Width="130" Header="YearPress" 
+              DisplayMemberBinding="{Binding YearPress}" />
+                                <GridViewColumn Width="110" Header="Themes" 
+              DisplayMemberBinding="{Binding Themes}" />
+                                <GridViewColumn Width="90" Header="Catagory" 
+              DisplayMemberBinding="{Binding Catagory}" />
+                                <GridViewColumn Width="130" Header="Author" 
+              DisplayMemberBinding="{Binding Author}" />
+                                <GridViewColumn Width="130" Header="Press" 
+              DisplayMemberBinding="{Binding Press}" />
+                                <GridViewColumn Width="130" Header="Comment" 
+              DisplayMemberBinding="{Binding Comment}" />
+                                <GridViewColumn Width="150" Header=" Delete Action">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button   Command="{Binding Path=DataContext.Remove, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" 
+              
+                       Margin="0"
+                       VerticalAlignment="Center"
+                                        
+                        >
+                                                <materialDesign:PackIcon Kind="Delete"  Foreground="{DynamicResource darkmode_1}"  />
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="150" Header=" Update Action">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Command="{Binding Path=DataContext.Update, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" 
+              
+                       Margin="0"
+                       VerticalAlignment="Center"
+                                        
+                        >
+                                                <materialDesign:PackIcon Kind="Update"  Foreground="{DynamicResource darkmode_1}"  />
+
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button HorizontalAlignment="Right" Margin="5,5,5,5"  Background="{DynamicResource esascolor}"
+        Content="Add Row"  />
+                </StackPanel>
+
+
+            </Grid>
+           
         </Grid>
     </Grid>
 
