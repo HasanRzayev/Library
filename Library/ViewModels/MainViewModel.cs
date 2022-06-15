@@ -39,6 +39,8 @@ namespace Library.ViewModels
             }
         }
 
+
+
         private int width;
 
         public int Width2
@@ -50,6 +52,7 @@ namespace Library.ViewModels
                 RaisePropertyChanged();
             }
         }
+
 
 
         private bool popupisopen;
@@ -81,6 +84,7 @@ namespace Library.ViewModels
             {
              
                 navigationService.NavigateTo<LoginViewModel>();
+
             });
         }
 

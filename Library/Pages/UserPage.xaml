@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:Library.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:UserViewModel}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       TextElement.FontWeight="Regular"
       TextElement.FontSize="13"
       TextOptions.TextFormattingMode="Ideal"
@@ -37,17 +37,10 @@
   materialDesign:HintAssist.Hint="Search"
   materialDesign:HintAssist.HintOpacity=".26"
   IsEditable="True">
-                    <ComboBoxItem
-    Content="Apple" />
-                    <ComboBoxItem
-    Content="Banana" />
-                    <ComboBoxItem
-    Content="Pear" />
-                    <ComboBoxItem
-    Content="Orange" />
+                   
                 </ComboBox>
                 <StackPanel Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
-                    <ListView  SelectedItem="{Binding Selected_driver}"  ItemsSource="{Binding drivers,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="800">
+                    <ListView   ItemsSource="{Binding Books}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="800" >
                         <ListView.View >
                             <GridView >
                                 <GridViewColumn Width="130" Header="Name" 
@@ -75,7 +68,7 @@
                        VerticalAlignment="Center"
                                         
                         >
-                                                <materialDesign:PackIcon Kind="Delete"  Foreground="{DynamicResource darkmode_1}"  />
+                                                <materialDesign:PackIcon Kind="Plus" />
                                             </Button>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

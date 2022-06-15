@@ -35,9 +35,9 @@
             <Viewbox Width="300" Height="100" HorizontalAlignment="Right">
                 <hc:FlipClock HorizontalAlignment="Right" />
             </Viewbox>
-       
 
-            <materialDesign:DialogHost Width="300" Margin="650,100,0,0"
+
+            <materialDesign:DialogHost Width="300" Margin="650,50,0,0" Height="600"
   IsOpen="{Binding Popupisopen,UpdateSourceTrigger=PropertyChanged}"
   DialogTheme="Inherit">
                     <materialDesign:DialogHost.DialogContent >
@@ -57,7 +57,7 @@
                                 </Button.CommandParameter>
                             </Button>
                             <Border BorderThickness="10">
-                                <Label Content="Register" Foreground="White" FontSize="20">
+                                <Label Content="Register" Foreground="#1282a2" FontSize="20">
 
                                     </Label>
                                 </Border>
@@ -66,7 +66,7 @@
                             </Border>
                                 <Border BorderThickness="20" >
                                     <TextBox 
-  Name="TextBoxName"    Foreground="#1282a2"
+  Name="TextBoxName"  
   materialDesign:HintAssist.Hint="Name"
   materialDesign:HintAssist.HelperText="Helper text longer than error">
                                         <TextBox.Text >
@@ -110,9 +110,9 @@
                         <Grid>
                            
                             <Border  BorderThickness="10">
-                                    <StackPanel   HorizontalAlignment="Center" Width="300"  Height="500" VerticalAlignment="Center"  Background="#1282a2">
+                                    <StackPanel   HorizontalAlignment="Center" Width="300"  VerticalAlignment="Center"  Background="#1282a2">
                                     <Border BorderThickness="10">
-                                    <Label Content="Login"  FontSize="20"  Foreground="#1282a2">
+                                    <Label Content="Login"  FontSize="20"  Foreground="#1282a2" Background="White">
 
                                         </Label>
                                     </Border>
@@ -124,7 +124,7 @@
                                 <Border BorderThickness="20" >
                                         <TextBox
   x:Name="NameTextBox_register"
-  materialDesign:HintAssist.Hint="Name" Foreground="white"
+  materialDesign:HintAssist.Hint="Name" 
   materialDesign:HintAssist.HelperText="Helper text longer than error">
                                             <TextBox.Text>
                                                 <Binding
@@ -137,24 +137,24 @@
                                     </Border>
                                     <Border BorderThickness="20">
                                     <TextBox
-  x:Name="PasswordBox_register" Text="{Binding PasswordLogin}"
-  materialDesign:HintAssist.Hint="Password" Foreground="white"
+  x:Name="PasswordBox_register" Text="{Binding PasswordLogin,UpdateSourceTrigger=PropertyChanged}"
+  materialDesign:HintAssist.Hint="Password" 
   materialDesign:TextFieldAssist.HasClearButton="True"
   materialDesign:HintAssist.HelperText="At least 8 characters" />
                                     </Border>
-                                        <Border BorderThickness="20" Background="#1282a2" >
-                                        <Grid
- >
-                                            <Button
-    
-    materialDesign:ButtonAssist.CornerRadius="10"  Foreground="#1282a2" Background="White"
+                                        <Border BorderThickness="20" >
+                                    <Grid>
+                                        <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+   Command="{Binding Login_button}"
+    materialDesign:ButtonAssist.CornerRadius="10"
     ToolTip="MaterialDesignRaisedButton with Round Corners"
-    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"  Command="{Binding OpenUserCommand}">
-                                                <TextBlock
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                            <TextBlock
       Text="Login" />
-                                            </Button>
-                                        </Grid>
-                                    </Border>
+                                        </Button>
+                                    </Grid>
+                                </Border>
                                 </StackPanel>
                             </Border>
                         <Button Background="#00a8e8"

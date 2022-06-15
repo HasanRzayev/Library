@@ -16,11 +16,13 @@ namespace Library.ViewModels
         private readonly IRepository<Book> books;
 
         public ObservableCollection<Book> Books { get; set; }
+        public User user { get; set; }
 
-        public UserViewModel(IRepository<Book> books)
+        public UserViewModel(IRepository<Book> books,User user)
         {
             this.books = books;
             Books = new ObservableCollection<Book>(books.GetAll());
+            user = user;
         }
 
     }

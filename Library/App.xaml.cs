@@ -36,24 +36,35 @@ namespace Library
         private void Register()
         {
             Container = new Container();
+
             Container.RegisterSingleton<INavigationService, NavigationService>();
             Container.RegisterSingleton<IMessenger, Messenger>();
+
             Container.RegisterSingleton<AppDB>();
+
             Container.RegisterSingleton<IRepository<User>, Repository<User>>();
             Container.RegisterSingleton<IRepository<User_Cards>, Repository<User_Cards>>();
             Container.RegisterSingleton<IRepository<Book>, Repository<Book>>();
+            Container.RegisterSingleton<User>();
             Container.RegisterSingleton<UserViewModel>();
+           
             Container.RegisterSingleton<MainViewModel>();
             Container.RegisterSingleton<LoginViewModel>();
 
             Container.Verify();
+
         }
+        
 
         public void StartMain<T>() where T : ViewModelBase
         {
+            
             Window window = new MainWindow();
+            
             var viewModel = Container.GetInstance<T>();
+             
             window.DataContext = viewModel;
+
             window.ShowDialog();
         }
     }
