@@ -80,6 +80,8 @@ namespace Library.ViewModels
         {
             get => new RelayCommand(() =>
             {
+
+
                 if(NameRegister==null && PasswordRegister==null) MaterialMessageBox.ShowError(@"Enter UserName and Password");
                 else if(NameRegister==null) MaterialMessageBox.ShowError(@"Enter UserName");
                 else if(PasswordRegister==null) MaterialMessageBox.ShowError(@"Enter Password");
@@ -106,35 +108,40 @@ namespace Library.ViewModels
         {
             get => new RelayCommand(() =>
             {
+                int count = 0;
                 if (NameLogin==null && PasswordLogin==null) MaterialMessageBox.ShowError(@"Enter UserName and Password");
                 else if (NameLogin==null) MaterialMessageBox.ShowError(@"Enter UserName");
                 else if (PasswordLogin==null) MaterialMessageBox.ShowError(@"Enter Password");
                 else if (NameLogin!=null && PasswordLogin!=null)
                 {
-                foreach (var user in Users)
-                    {
-                        if(NameLogin==user.UserName && PasswordLogin==user.Password)
+                      foreach (var user in Users)
                         {
-                            Popupisopen=true;
-                            Thread.Sleep(3000);
-                            Popupisopen=false;
-                            navigationService.NavigateTo<UserViewModel>();
-                            foreach (var item in users.GetAll())
-                            {
-
-                                if(item.Id==item.Id) App.Container.GetInstance<UserViewModel>().user = item;
-
-                            }
-                            PasswordLogin=null;
-                            NameLogin=null;
-
-
-
-
-
-                        }
-                    }
+                              if(NameLogin==user.UserName && PasswordLogin==user.Password)
+                              {
+                                 
+                                  navigationService.NavigateTo<UserViewModel>();
+                                  foreach (var item in users.GetAll())
+                                  {
+                      
+                                      if(item.Id==item.Id) App.Container.GetInstance<UserViewModel>().user = item;
+                      
+                                  }
+                                  PasswordLogin=null;
+                                  NameLogin=null;
+                                  count++;
+                                    
+                      
+                      
+                      
+                              }
+                          }
                         
+                }
+                if(count==0)
+                {
+                    MaterialMessageBox.ShowError(@"NOOOOOOOOOOOOOOOO LOGIN");
+                    PasswordLogin=null;
+                    NameLogin=null;
                 }
                  
             });

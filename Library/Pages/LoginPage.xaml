@@ -169,7 +169,7 @@
                         </Grid>
                     </Border>
                 </materialDesign:DialogHost>
-            <Popup IsOpen="{Binding Popupisopen,UpdateSourceTrigger=PropertyChanged}" Placement="Center" >
+            <Popup IsOpen="{Binding Popupisopen,UpdateSourceTrigger=PropertyChanged}" Placement="Center"  Panel.ZIndex="3">
                 <Border VerticalAlignment="Center" Margin="32,0,0,0" Background="{DynamicResource PrimaryBrush}" CornerRadius="10">
                     <hc:LoadingCircle Style="{StaticResource LoadingCircleLight}" Margin="10"/>
                 </Border>
