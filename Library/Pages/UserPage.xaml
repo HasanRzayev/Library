@@ -11,12 +11,7 @@
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
       FontFamily="{DynamicResource MaterialDesignFont}"
-
       Height="900" Width="1600">
-
-
-
-
     <Grid Background="#1282a2">
         <Border CornerRadius="52" BorderThickness="10" BorderBrush="White">
          
@@ -126,7 +121,7 @@
                     </ListView>
            
                 </StackPanel>
-                <Popup Margin="10,10,0,13" Name="Popup1" Placement="Center" Width="300" Height="800"  IsOpen="{Binding Popupisopen,UpdateSourceTrigger=PropertyChanged}" >
+                <Popup Margin="10,10,0,13" Name="Popup1" Placement="Center" Width="600" Height="800"  IsOpen="{Binding Popupisopen,UpdateSourceTrigger=PropertyChanged}" >
                     <StackPanel  Background="DarkRed">
                         <Border CornerRadius="10"  BorderThickness="15" >
                             <Button Width="60" Height="30" HorizontalAlignment="Right" Command="{Binding Exit}"  >
