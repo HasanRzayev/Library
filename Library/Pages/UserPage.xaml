@@ -22,9 +22,19 @@
             <Grid.RowDefinitions>
 
                 <RowDefinition Height="7*"  ></RowDefinition>
-                <RowDefinition Height="4*"  ></RowDefinition>
+                <RowDefinition Height="1*"  ></RowDefinition>
 
             </Grid.RowDefinitions>
+            <hc:RunningBlock Grid.Row="1" Margin="0,16,0,0" Duration="0:0:20"  IsRunning="{Binding IsMouseOver,RelativeSource={RelativeSource Self},Converter={StaticResource Boolean2BooleanReConverter}}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Instagram-256.png" Width="50"/>
+                    <TextBlock Text="  h.a.s.a.n.rza         " FontSize="80"></TextBlock>
+                    <Image Source="https://cdn0.iconfinder.com/data/icons/zondicons/20/phone-256.png" Width="50"/>
+                    <TextBlock Text="  999.999.99.99        " FontSize="80"></TextBlock>
+          
+
+                </StackPanel>
+            </hc:RunningBlock>
             <Grid Grid.Row="0" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
