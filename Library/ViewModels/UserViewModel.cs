@@ -188,10 +188,16 @@ namespace Library.ViewModels
                 if (item.user_id==user.Id) User_has_book.Add(item);
 
             }
-            Books = new ObservableCollection<Book>(books.GetAll());
+            Books.Clear();
+            foreach (var item in books.GetAll())
+            {
+                Books.Add(item);
+            }
+          
         }
         public UserViewModel(IRepository<Book> books, IRepository<User_Cards> cards,User user)
         {
+
             this.cards = cards;
 
             Cards = new ObservableCollection<User_Cards>(cards.GetAll()); 
