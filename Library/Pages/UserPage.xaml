@@ -11,12 +11,9 @@
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
       FontFamily="{DynamicResource MaterialDesignFont}"
-      Height="900" Width="1600">
+      Height="850" Width="1600">
     <Grid Background="#1282a2">
-        <Border CornerRadius="52" BorderThickness="10" BorderBrush="White">
-         
-
-        </Border>
+        
         <Grid>
             
             <Grid.RowDefinitions>
@@ -28,9 +25,9 @@
             <hc:RunningBlock Grid.Row="1" Margin="0,16,0,0" Duration="0:0:20"  IsRunning="{Binding IsMouseOver,RelativeSource={RelativeSource Self},Converter={StaticResource Boolean2BooleanReConverter}}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Instagram-256.png" Width="50"/>
-                    <TextBlock Text="  h.a.s.a.n.rza         " FontSize="80"></TextBlock>
-                    <Image Source="https://cdn0.iconfinder.com/data/icons/zondicons/20/phone-256.png" Width="50"/>
-                    <TextBlock Text="  999.999.99.99        " FontSize="80"></TextBlock>
+                    <TextBlock Text="  h.a.s.a.n.rza         " FontSize="50"></TextBlock>
+                    <Image Source="https://cdn0.iconfinder.com/data/icons/zondicons/20/phone-256.png" Width="40"/>
+                    <TextBlock Text="  999.999.99.99        " FontSize="50"></TextBlock>
           
 
                 </StackPanel>
@@ -149,9 +146,6 @@
                             </Button>
                         </Border>
 
-                        <Image Source="{Binding Selected_book.imageurl}">
-                            
-                        </Image>
                         <StackPanel Orientation="Horizontal">
                             <Border CornerRadius="10"  BorderThickness="15" >
                                 <Label Content="Book Name"></Label>

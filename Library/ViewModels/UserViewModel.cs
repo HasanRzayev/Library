@@ -199,17 +199,24 @@ namespace Library.ViewModels
                     Datein=DateTime.Today.ToString(),
                     Dateout="00000000000000"
                 };
-                Selected_book.Quality=Selected_book.Quality-1;
+                if (Selected_book.Quality-1>0)
+                {
+                    Selected_book.Quality=Selected_book.Quality-1;
 
-                card.user=user;
-                card.book=Selected_book;
+                    card.user=user;
+                    card.book=Selected_book;
 
-                cards.Add(card);
-                cards.SaveChanges();
+                    cards.Add(card);
+                    cards.SaveChanges();
 
-                cards.Update(card);
-                cards.SaveChanges();
-                books.SaveChanges();
+                    cards.Update(card);
+                    cards.SaveChanges();
+                    books.SaveChanges();
+                }
+                else
+                {
+                    MaterialMessageBox.ShowError(@"noooooooooooooooooo");
+                }
 
             }
 

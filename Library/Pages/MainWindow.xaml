@@ -15,6 +15,7 @@
      TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
      FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
 
         Title="MainWindow"  Height="900" Width="1600">
     <i:Interaction.Triggers>

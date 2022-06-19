@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -23,7 +24,17 @@ namespace Library.ViewModels
         private readonly IRepository<User> users;
         public ObservableCollection<User> Users { get; set; }
 
+        private bool popupisopen;
 
+        public bool Popupisopen
+        {
+            get { return popupisopen; }
+            set
+            {
+                popupisopen = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private string nameRegister;
 
@@ -80,7 +91,9 @@ namespace Library.ViewModels
                     users.SaveChanges();
 
                     Users = new ObservableCollection<User>(users.GetAll());
-
+                    MaterialMessageBox.ShowError(@"Good!!!!!!!!");
+                    PasswordRegister=null;
+                    NameRegister=null;
                 }
             });
         }
@@ -102,7 +115,9 @@ namespace Library.ViewModels
                     {
                         if(NameLogin==user.UserName && PasswordLogin==user.Password)
                         {
-                            MaterialMessageBox.ShowError(@"Good!!!!!!!!");
+                            Popupisopen=true;
+                            Thread.Sleep(3000);
+                            Popupisopen=false;
                             navigationService.NavigateTo<UserViewModel>();
                             foreach (var item in users.GetAll())
                             {
@@ -110,8 +125,8 @@ namespace Library.ViewModels
                                 if(item.Id==item.Id) App.Container.GetInstance<UserViewModel>().user = item;
 
                             }
-                           
-                           
+                            PasswordLogin=null;
+                            NameLogin=null;
 
 
 

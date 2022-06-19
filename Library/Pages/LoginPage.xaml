@@ -12,12 +12,12 @@
      TextElement.FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
-   
+   Background="Transparent"
      FontFamily="{DynamicResource MaterialDesignFont}"
 
-        Height="900" Width="1600">
+        Height="1100" Width="1600">
 
-        <Border CornerRadius="52" BorderThickness="10" BorderBrush="White">
+        <Border >
 
 
         <Border.Background>
@@ -29,6 +29,7 @@
          
            
             <StackPanel >
+                
             <TextBlock HorizontalAlignment="Center" Foreground="#1282a2"
   Style="{StaticResource MaterialDesignHeadline3TextBlock}"
   Text="Digital Library" />
@@ -168,7 +169,12 @@
                         </Grid>
                     </Border>
                 </materialDesign:DialogHost>
-            </StackPanel>
+            <Popup IsOpen="{Binding Popupisopen,UpdateSourceTrigger=PropertyChanged}" Placement="Center" >
+                <Border VerticalAlignment="Center" Margin="32,0,0,0" Background="{DynamicResource PrimaryBrush}" CornerRadius="10">
+                    <hc:LoadingCircle Style="{StaticResource LoadingCircleLight}" Margin="10"/>
+                </Border>
+            </Popup>
+        </StackPanel>
 
 
     </Border>
