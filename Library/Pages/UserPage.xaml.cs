@@ -23,6 +23,12 @@ namespace Library.Pages
         public UserPage()
         {
             InitializeComponent();
+//            CoverFlowMain.AddRange(new[]
+//{
+//    new Uri(@"https://cdn2.vectorstock.com/i/1000x1000/20/06/like-icon-on-red-vector-4682006.jpg"),
+//    new Uri(@"https://cdn2.vectorstock.com/i/1000x1000/20/06/like-icon-on-red-vector-4682006.jpg"),
+//});
+
         }
     }
 }

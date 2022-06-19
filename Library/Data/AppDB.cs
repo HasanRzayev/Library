@@ -21,7 +21,7 @@ namespace Library.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("   Data Source = STHQ0125-06;Initial Catalog=Library; User ID = admin; Password=admin; Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer("   Data Source = WIN-EA8010O87DM;Initial Catalog=Library;Integrated Security = True; Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,9 +29,9 @@ namespace Library.Data
             //modelBuilder.Entity<Car>()
             //    .HasAlternateKey(e => e.Number);
             modelBuilder.Entity<User>()
-                .HasOne(r => r.Card)
+                .HasMany(r => r.Card)
                 .WithOne(d => d.user)
-                .HasForeignKey<User_Cards>(r => r.user_id)
+                .HasForeignKey(r => r.user_id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Book>()

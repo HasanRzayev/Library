@@ -8,9 +8,11 @@ namespace Library.Model.Entities
 {
     public class Book : Entity
     {
+        public string imageurl { get; set; }
         public string Name { get; set; }
         public int Pages { get; set; }
         public int YearPress { get; set; }
+        public int Likecount { get; set; }
 
         public string Themes { get; set; }
         public string Catagory { get; set; }

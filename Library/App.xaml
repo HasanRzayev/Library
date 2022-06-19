@@ -18,6 +18,9 @@
             <DataTemplate DataType="{x:Type viewmodel:LoginViewModel}">
                 <views:LoginPage></views:LoginPage>
             </DataTemplate>
+            
+            
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />

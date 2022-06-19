@@ -10,7 +10,7 @@ namespace Library.Model.Entities
     {
         public string UserName { get; set; }
         public string Password { get; set; }
-        public User_Cards Card { get; set; }
+        public List<User_Cards> Card { get; set; }
 
 
 

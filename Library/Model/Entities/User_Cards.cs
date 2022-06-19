@@ -9,7 +9,7 @@ namespace Library.Model.Entities
     public class User_Cards : Entity
     {
         public string Dateout { get; set; }
-        public string Datein { get; set; }
+        public string Datein { get; set; } = null;
         public User user { get; set; }
         public int user_id { get; set; }
         public Book book { get; set; }

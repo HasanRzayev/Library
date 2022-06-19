@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:Library.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:UserViewModel}"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:Library.ViewModels" xmlns:hc="https://handyorg.github.io/handycontrol" d:DataContext="{d:DesignInstance Type=viewmodels:UserViewModel}"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       TextElement.FontWeight="Regular"
       TextElement.FontSize="13"
@@ -23,26 +23,42 @@
 
         </Border>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"  ></ColumnDefinition>
-                <ColumnDefinition Width="2*"  ></ColumnDefinition>
-                <ColumnDefinition Width="1*" ></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1" Background="White">
+            
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="7*"  ></RowDefinition>
+                <RowDefinition Height="4*"  ></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="9*" ></RowDefinition>
                 </Grid.RowDefinitions>
-                <ComboBox Grid.Row="0" Background="Gold"
+                
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Border CornerRadius="10"  BorderThickness="15" >
+                        <Button 
+  ToolTip="MaterialDesignFlatMidButton"
+  Content="History"
+                            Command="{Binding History_button}"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                    </Border>
+                    <Border CornerRadius="10"  BorderThickness="15" >
+                        <ComboBox  Background="Gold"
   materialDesign:HintAssist.Hint="Search"
   materialDesign:HintAssist.HintOpacity=".26"
   IsEditable="True">
-                   
-                </ComboBox>
+                    </ComboBox>
+                    </Border>
+                </StackPanel>
+         
+       
                 <StackPanel Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
-                    <ListView   ItemsSource="{Binding Books}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="800" >
+                    <ListView   ItemsSource="{Binding Books}" SelectedItem="{Binding Selected_book,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="800" >
                         <ListView.View >
-                            <GridView >
+                            <GridView  >
+                              
                                 <GridViewColumn Width="130" Header="Name" 
               DisplayMemberBinding="{Binding Name}"  />
                                 <GridViewColumn Width="130" Header="Pages"  
@@ -57,12 +73,14 @@
               DisplayMemberBinding="{Binding Author}" />
                                 <GridViewColumn Width="130" Header="Press" 
               DisplayMemberBinding="{Binding Press}" />
-                                <GridViewColumn Width="130" Header="Comment" 
-              DisplayMemberBinding="{Binding Comment}" />
-                                <GridViewColumn Width="150" Header=" Delete Action">
+                                <GridViewColumn Width="130" Header="Quality" 
+              DisplayMemberBinding="{Binding Quality,UpdateSourceTrigger=PropertyChanged}" />
+                                <GridViewColumn Width="130" Header="LikeCount" 
+              DisplayMemberBinding="{Binding Likecount}" />
+                                <GridViewColumn Width="150" Header="Buy">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button   Command="{Binding Path=DataContext.Remove, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" 
+                                            <Button   Command="{Binding Path=DataContext.Buy_button, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" 
               
                        Margin="0"
                        VerticalAlignment="Center"
@@ -73,31 +91,235 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Width="150" Header=" Update Action">
+                                <GridViewColumn Width="150" Header="About">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button  Command="{Binding Path=DataContext.Update, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" 
+                                            <Button  Command="{Binding Path=DataContext.About_button, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" 
               
                        Margin="0"
-                       VerticalAlignment="Center"
-                                        
-                        >
-                                                <materialDesign:PackIcon Kind="Update"  Foreground="{DynamicResource darkmode_1}"  />
+                       VerticalAlignment="Center" >
+                                                <materialDesign:PackIcon Kind="InformationOutline" />
 
                                             </Button>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                <!--<GridViewColumn Width="150" Header="Like">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Width="180" Margin="0,10,0,0" hc:FloatingBlock.Duration="0:0:1" hc:FloatingBlock.VerticalOffset="-20" hc:FloatingBlock.ToX="50" hc:FloatingBlock.ToY="-80">
+                                                <materialDesign:PackIcon Kind="ThumbUp" />
+                                                <hc:FloatingBlock.ContentTemplate>
+                                                    <DataTemplate>
+                                                              <materialDesign:PackIcon Kind="ThumbUp" />
+                                                    </DataTemplate>
+                                                </hc:FloatingBlock.ContentTemplate>
+                                            </Button>
+
+                                            
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>-->
                             </GridView>
+                            
                         </ListView.View>
                     </ListView>
-                    <Button HorizontalAlignment="Right" Margin="5,5,5,5"  Background="{DynamicResource esascolor}"
-        Content="Add Row"  />
+           
                 </StackPanel>
+                <Popup Margin="10,10,0,13" Name="Popup1" Placement="Center" Width="300" Height="800"  IsOpen="{Binding Popupisopen,UpdateSourceTrigger=PropertyChanged}" >
+                    <StackPanel  Background="DarkRed">
+                        <Border CornerRadius="10"  BorderThickness="15" >
+                            <Button Width="60" Height="30" HorizontalAlignment="Right" Command="{Binding Exit}"  >
+                                <materialDesign:PackIcon Kind="CloseCircle" />
+                            </Button>
+                        </Border>
 
+                        <Image Source="{Binding Selected_book.imageurl}">
+                            
+                        </Image>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="Book Name"></Label>
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                    <Label Content="{Binding Selected_book.Name}"></Label>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="Book Pages"></Label>
 
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="{Binding Selected_book.Pages}"></Label>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="Book YearPress"></Label>
+
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="{Binding Selected_book.YearPress}"></Label>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="Book Theme"></Label>
+
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="{Binding Selected_book.Themes}"></Label>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="Book Catagory"></Label>
+
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="{Binding Selected_book.Catagory}"></Label>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="Book Author"></Label>
+
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="{Binding Selected_book.Author}"></Label>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="Book Press"></Label>
+
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="{Binding Selected_book.Press}"></Label>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="Book Comment"></Label>
+
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="{Binding Selected_book.Comment}"></Label>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="Book Quality"></Label>
+
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Label Content="{Binding Selected_book.Quality}"></Label>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Button  Width="180" Margin="0,10,0,0" hc:FloatingBlock.Duration="0:0:1" hc:FloatingBlock.VerticalOffset="-20" hc:FloatingBlock.ToX="50" hc:FloatingBlock.ToY="-80">
+                                    <materialDesign:PackIcon Kind="ThumbUp" />
+                                    <hc:FloatingBlock.ContentTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:PackIcon Kind="ThumbUp" />
+                                        </DataTemplate>
+                                    </hc:FloatingBlock.ContentTemplate>
+                                </Button>
+
+                            </Border>
+                            <Border CornerRadius="10"  BorderThickness="15" >
+                                <Button  Width="180" Margin="0,10,0,0" hc:FloatingBlock.Duration="0:0:1" hc:FloatingBlock.VerticalOffset="-20" hc:FloatingBlock.ToX="50" hc:FloatingBlock.ToY="-80">
+                                    <materialDesign:PackIcon Kind="ThumbDown" />
+                                    <hc:FloatingBlock.ContentTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:PackIcon Kind="ThumbDown" />
+                                        </DataTemplate>
+                                    </hc:FloatingBlock.ContentTemplate>
+                                </Button>
+                            </Border>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                </Popup>
+                <Popup Margin="10,10,0,13" Placement="Center" Width="800" Height="800"  IsOpen="{Binding Popupisopen_history,UpdateSourceTrigger=PropertyChanged}" >
+                    <StackPanel>
+                        <Border CornerRadius="10"  BorderThickness="15" >
+                            <Button Width="60" Height="30" HorizontalAlignment="Right" Command="{Binding Exit_history}"  >
+                                <materialDesign:PackIcon Kind="CloseCircle" />
+                            </Button>
+                        </Border>
+                        <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+                            <ListView   ItemsSource="{Binding User_has_book}" SelectedItem="{Binding Selected,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="800" >
+                                <ListView.View >
+                                    <GridView  >
+
+                                        <GridViewColumn Width="130" Header="Id" 
+              DisplayMemberBinding="{Binding Id}"  />
+                                        <GridViewColumn Width="130" Header="book_id"  
+              DisplayMemberBinding="{Binding book_id}" />
+                                        <GridViewColumn Width="130" Header="user_id" 
+              DisplayMemberBinding="{Binding user_id}" />
+                                        <GridViewColumn Width="110" Header="Dateout" 
+              DisplayMemberBinding="{Binding Dateout}" />
+                                        <GridViewColumn Width="90" Header="Datein" 
+              DisplayMemberBinding="{Binding Datein}" />
+                                       
+                                        <!--<GridViewColumn Width="150" Header="Buy">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button   Command="{Binding Path=DataContext.Remove, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" 
+              
+                       Margin="0"
+                       VerticalAlignment="Center"
+                                        
+                        >
+                                                        <materialDesign:PackIcon Kind="Plus" />
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="150" Header="About">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button  Command="{Binding Path=DataContext.About_button, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" 
+              
+                       Margin="0"
+                       VerticalAlignment="Center" >
+                                                        <materialDesign:PackIcon Kind="InformationOutline" />
+
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>-->
+                                        <!--<GridViewColumn Width="150" Header="Like">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Width="180" Margin="0,10,0,0" hc:FloatingBlock.Duration="0:0:1" hc:FloatingBlock.VerticalOffset="-20" hc:FloatingBlock.ToX="50" hc:FloatingBlock.ToY="-80">
+                                                <materialDesign:PackIcon Kind="ThumbUp" />
+                                                <hc:FloatingBlock.ContentTemplate>
+                                                    <DataTemplate>
+                                                              <materialDesign:PackIcon Kind="ThumbUp" />
+                                                    </DataTemplate>
+                                                </hc:FloatingBlock.ContentTemplate>
+                                            </Button>
+
+                                            
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>-->
+                                    </GridView>
+
+                                </ListView.View>
+                            </ListView>
+
+                        </StackPanel>
+                    </StackPanel>
+                </Popup>
             </Grid>
            
+
         </Grid>
     </Grid>
 

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -74,10 +75,11 @@ namespace Library.ViewModels
                 else if (NameRegister!=null && PasswordRegister!=null)
                 {
                     
-                    Users.Add(new User { UserName=NameRegister,Password=PasswordRegister});
+              
                     users.Add(new User { UserName=NameRegister, Password=PasswordRegister });
                     users.SaveChanges();
-                 
+
+                    Users = new ObservableCollection<User>(users.GetAll());
 
                 }
             });
@@ -104,6 +106,11 @@ namespace Library.ViewModels
                             navigationService.NavigateTo<UserViewModel>();
 
                             App.Container.GetInstance<UserViewModel>().user = new User { UserName=NameLogin ,Password=PasswordLogin };
+                           
+
+
+
+
 
                         }
                     }
@@ -113,6 +120,7 @@ namespace Library.ViewModels
             });
         }
 
+      
 
 
         private INavigationService navigationService;
