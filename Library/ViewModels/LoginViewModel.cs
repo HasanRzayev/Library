@@ -104,8 +104,13 @@ namespace Library.ViewModels
                         {
                             MaterialMessageBox.ShowError(@"Good!!!!!!!!");
                             navigationService.NavigateTo<UserViewModel>();
+                            foreach (var item in users.GetAll())
+                            {
 
-                            App.Container.GetInstance<UserViewModel>().user = new User { UserName=NameLogin ,Password=PasswordLogin };
+                                if(item.Id==item.Id) App.Container.GetInstance<UserViewModel>().user = item;
+
+                            }
+                           
                            
 
 

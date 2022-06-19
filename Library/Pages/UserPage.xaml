@@ -35,15 +35,25 @@
                     <Border CornerRadius="10"  BorderThickness="15" >
                         <Button 
   ToolTip="MaterialDesignFlatMidButton"
+
+                   
+                            Command="{Binding Back}"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
+                            <materialDesign:PackIcon Kind="ArrowLeftCircle" />
+                        </Button>
+                    </Border>
+                    <Border CornerRadius="10"  BorderThickness="15" >
+                        <Button 
+  ToolTip="MaterialDesignFlatMidButton"
   Content="History"
                             Command="{Binding History_button}"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
                     </Border>
                     <Border CornerRadius="10"  BorderThickness="15" >
-                        <ComboBox  Background="Gold"
+                        <ComboBox  Background="Gold" Width="1400"
   materialDesign:HintAssist.Hint="Search"
   materialDesign:HintAssist.HintOpacity=".26"
-  IsEditable="True">
+  IsEditable="True" Text="{Binding SearchText}">
                     </ComboBox>
                     </Border>
                 </StackPanel>

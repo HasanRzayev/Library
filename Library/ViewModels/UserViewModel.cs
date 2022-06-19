@@ -2,8 +2,10 @@
 using Bogus;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Library.Model.Entities;
 using Library.Repos;
+using Library.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +13,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Library.ViewModels
 {
@@ -120,6 +123,13 @@ namespace Library.ViewModels
                 Popupisopen=false;
             });
         }
+        public RelayCommand Back
+        {
+            get => new RelayCommand(() =>
+            {
+                navigationService.NavigateTo<LoginViewModel>();
+            });
+        }
         public RelayCommand Exit_history
         {
             get => new RelayCommand(() =>
@@ -144,6 +154,26 @@ namespace Library.ViewModels
 
 
 
+        }
+        private bool userFilter(object item)
+        {
+            if (String.IsNullOrEmpty(SearchText))
+                return true;
+            else
+                return ((item as Book).Name.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0);
+
+        }
+        private string serachtext;
+
+        public string SearchText
+        {
+            get { return serachtext; }
+            set
+            {
+                serachtext = value; RaisePropertyChanged();
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Books);
+                view.Filter = userFilter;
+            }
         }
         public void buy_button(object a)
         {
@@ -195,10 +225,13 @@ namespace Library.ViewModels
             }
           
         }
-        public UserViewModel(IRepository<Book> books, IRepository<User_Cards> cards,User user)
+
+        private INavigationService navigationService;
+        public UserViewModel(IRepository<Book> books, IRepository<User_Cards> cards,User user, IMessenger messenger, INavigationService navigationService)
         {
 
             this.cards = cards;
+            this.navigationService = navigationService;
 
             Cards = new ObservableCollection<User_Cards>(cards.GetAll()); 
 

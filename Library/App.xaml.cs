@@ -39,18 +39,14 @@ namespace Library
 
             Container.RegisterSingleton<INavigationService, NavigationService>();
             Container.RegisterSingleton<IMessenger, Messenger>();
-
             Container.RegisterSingleton<AppDB>();
-
             Container.RegisterSingleton<IRepository<User>, Repository<User>>();
             Container.RegisterSingleton<IRepository<User_Cards>, Repository<User_Cards>>();
             Container.RegisterSingleton<IRepository<Book>, Repository<Book>>();
             Container.RegisterSingleton<User>();
             Container.RegisterSingleton<UserViewModel>();
-           
             Container.RegisterSingleton<MainViewModel>();
             Container.RegisterSingleton<LoginViewModel>();
-
             Container.Verify();
 
         }

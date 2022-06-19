@@ -22,7 +22,15 @@ namespace Library.Pages
     {
         public LoginPage()
         {
+
+
+
+
             InitializeComponent();
+
+
+
+
         }
     }
 }
